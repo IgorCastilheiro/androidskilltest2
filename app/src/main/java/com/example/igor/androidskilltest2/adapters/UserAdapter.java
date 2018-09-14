@@ -6,16 +6,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.igor.androidskilltest2.R;
 import com.example.igor.androidskilltest2.models.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> implements Filterable {
     private List<User> userList;
+    private List<User> originalUserList;
     private OnItemClickListener itemClickListener;
 
     // Provide a suitable constructor (depends on the kind of dataset)
@@ -28,6 +32,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     public void serUsers(List<User> users) {
         userList = users;
+        originalUserList = users;
         notifyDataSetChanged();
     }
 
@@ -58,6 +63,38 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             return userList.size();
         else return 0;
     }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                userList = (List<User>) results.values;
+                UserAdapter.this.notifyDataSetChanged();
+            }
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                final FilterResults oReturn = new FilterResults();
+                final List<User> results = new ArrayList<>();
+                if (originalUserList == null)
+                    originalUserList = userList;
+                if (constraint != null) {
+                    if (originalUserList != null && originalUserList.size() > 0) {
+                        for (final User user : originalUserList) {
+                            if (user.getFirstName().toLowerCase()
+                                    .contains(constraint.toString().toLowerCase()))
+                                results.add(user);
+                        }
+                    }
+                    oReturn.values = results;
+                }
+                return oReturn;
+            }
+        };
+    }
+
 
     public interface OnItemClickListener {
         void onItemClick(ImageView view, int position, User user);

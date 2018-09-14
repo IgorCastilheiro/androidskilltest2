@@ -8,7 +8,7 @@
     tools:context=".activities.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <android.support.v7.widget.RecyclerView
+    <com.example.igor.androidskilltest2.components.EmptyRecyclerView
         android:id="@+id/userListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,5 +17,14 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/emptyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/no_results"
+        android:textSize="20sp"
+        android:visibility="gone" />
 
 </android.support.constraint.ConstraintLayout>
