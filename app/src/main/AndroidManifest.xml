@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -31,7 +32,7 @@
             android:name=".activities.RegisterActivity"
             android:label="@string/title_activity_register" />
         <activity android:name=".activities.UserDetailActivity" />
-        <activity android:name=".activities.AlbumListActivity"></activity>
+        <activity android:name=".activities.AlbumListActivity" />
     </application>
 
 </manifest>
