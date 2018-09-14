@@ -8,7 +8,7 @@ import android.content.Context;
 import com.example.igor.androidskilltest2.interfaces.UserDAO;
 import com.example.igor.androidskilltest2.models.User;
 
-@Database(entities = {User.class}, version = 1)
+@Database(entities = {User.class}, version = 1, exportSchema = false)
 public abstract class AppRoomDatabase extends RoomDatabase {
 
     private static AppRoomDatabase INSTANCE;

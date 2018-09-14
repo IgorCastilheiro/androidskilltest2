@@ -31,6 +31,7 @@
             android:name=".activities.RegisterActivity"
             android:label="@string/title_activity_register" />
         <activity android:name=".activities.UserDetailActivity" />
+        <activity android:name=".activities.AlbumListActivity"></activity>
     </application>
 
 </manifest>
