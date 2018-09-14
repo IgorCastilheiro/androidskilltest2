@@ -17,17 +17,20 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.igor.androidskilltest2.R;
 import com.example.igor.androidskilltest2.adapters.UserAdapter;
 import com.example.igor.androidskilltest2.components.EmptyRecyclerView;
+import com.example.igor.androidskilltest2.models.User;
 import com.example.igor.androidskilltest2.viewmodels.UserViewModel;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static final String EXTRA_USER_ITEM = "animal_image_url";
-    public static final String EXTRA_USER_IMAGE_TRANSITION_NAME = "animal_image_transition_name";
+    public static final String EXTRA_USER_ITEM = "user_avatar";
+    public static final String EXTRA_USER_IMAGE_TRANSITION_NAME = "user_avatar_transition_name";
     private UserAdapter adapter;
 
     @Override
@@ -39,14 +42,30 @@ public class MainActivity extends AppCompatActivity
 
         EmptyRecyclerView recyclerView = findViewById(R.id.userListView);
         recyclerView.setEmptyView(findViewById(R.id.emptyView));
+        Bundle extras = getIntent().getExtras();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View hView = navigationView.getHeaderView(0);
+
+        TextView txtName = hView.findViewById(R.id.txtName);
+        TextView txtEmail = hView.findViewById(R.id.txtEmail);
+
+        User user;
+        if (extras != null) {
+            user = extras.getParcelable("user");
+
+            txtName.setText(user.getFirstName());
+            txtEmail.setText(user.getEmail());
+        }
 
         adapter = new UserAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter.setOnItemClickListener((userAvatar, position, user) -> {
+        adapter.setOnItemClickListener((userAvatar, position, itemUser) -> {
             Intent intent = new Intent(MainActivity.this, UserDetailActivity.class);
-            intent.putExtra(EXTRA_USER_ITEM, user);
+            intent.putExtra(EXTRA_USER_ITEM, itemUser);
             intent.putExtra(EXTRA_USER_IMAGE_TRANSITION_NAME, ViewCompat.getTransitionName(userAvatar));
 
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
@@ -76,8 +95,6 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override

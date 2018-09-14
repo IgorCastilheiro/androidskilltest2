@@ -28,4 +28,6 @@
     <string name="album_list">Album List</string>
     <string name="search">Search</string>
     <string name="no_results">No Results</string>
+    <string name="edit">Edit</string>
+    <string name="remove">Remove</string>
 </resources>

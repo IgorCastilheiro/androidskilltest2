@@ -7,6 +7,7 @@
     tools:context=".activities.UserDetailActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/nav_header_height"
         android:background="@drawable/side_nav_bar"
@@ -41,5 +42,43 @@
             android:text="@string/nav_header_subtitle" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtEdit"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:drawableLeft="@drawable/ic_edit_black_24dp"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/ic_edit_black_24dp"
+        android:gravity="center_vertical|start"
+        android:text="@string/edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <TextView
+        android:id="@+id/txtRemove"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:drawableLeft="@drawable/ic_delete_black_24dp"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/ic_delete_black_24dp"
+        android:gravity="center_vertical|start"
+        android:text="@string/remove"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEdit" />
+
 
 </android.support.constraint.ConstraintLayout>
